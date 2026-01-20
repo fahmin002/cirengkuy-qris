@@ -14,7 +14,10 @@ class Payment extends Model
         'status',
         'qris_url',
         'transaction_time',
-        'settlement_time'
+        'settlement_time',
+        'refund_proof',
+        'refund_reason',
+        'refund_time',
     ];
 
     public function order()

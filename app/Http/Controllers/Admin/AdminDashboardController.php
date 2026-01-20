@@ -9,6 +9,6 @@ class AdminDashboardController extends Controller
 {
     public function dashboard(Request $request)
     {
-        return view("admin.dashboard");
+        return view("livewire.admin.dashboard");
     }
 }

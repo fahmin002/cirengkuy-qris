@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/dashboard", [AdminDashboardController::class, "dashboard"])->name("dashboard");
 Route::resource('orders', OrderController::class);
-Route::resource('orderitems', OrderItemController::class);
+Route::get('orders/{order}/print', [OrderController::class, 'print'])->name('orders.print');
+// Route::resource('orderitems', OrderItemController::class);
 Route::resource('products', ProductController::class);
 Route::resource('payments', PaymentController::class);

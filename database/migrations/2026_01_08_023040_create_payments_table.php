@@ -16,10 +16,13 @@ return new class extends Migration {
             $table->enum('payment_method', ['qris', 'cash']);
             $table->string('midtrans_order_id')->unique()->nullable();
             $table->decimal('amount', 12, 2);
-            $table->enum('status', ['pending', 'success', 'failed', 'expired'])->default('pending')->index();
+            $table->enum('status', ['pending', 'success', 'failed', 'expired', 'refunded'])->default('pending')->index();
             $table->text('qris_url')->nullable();
             $table->dateTime('transaction_time')->nullable();
             $table->dateTime('settlement_time')->nullable();
+            $table->text('refund_proof')->nullable();
+            $table->text('refund_reason')->nullable();
+            $table->dateTime('refund_time')->nullable();
 
             $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();

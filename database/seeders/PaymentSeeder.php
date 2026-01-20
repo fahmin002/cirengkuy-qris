@@ -21,6 +21,9 @@ class PaymentSeeder extends Seeder
             'qris_url' => 'https://midtrans.com/qris/example',
             'transaction_time' => now(),
             'settlement_time' => now(),
+            'refund_proof' => null,
+            'refund_reason' => null,
+            'refund_time' => null,
         ]);
     }
 }

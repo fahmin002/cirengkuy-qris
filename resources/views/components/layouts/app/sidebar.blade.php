@@ -23,9 +23,6 @@
                     <flux:navlist.item icon="shopping-cart" :href="route('admin.orders.index')"
                         :current="request()->routeIs('admin.orders.index')" wire:navigate>{{ __('Orders') }}
                     </flux:navlist.item>
-                    <flux:navlist.item icon="clipboard-document-check" :href="route('admin.orderitems.index')"
-                        :current="request()->routeIs('admin.orderitems.index')" wire:navigate>{{ __('Order Items') }}
-                    </flux:navlist.item>
                     <flux:navlist.item icon="gift" :href="route('admin.products.index')"
                         :current="request()->routeIs('admin.products.index')" wire:navigate>{{ __('Products') }}
                     </flux:navlist.item>

@@ -15,11 +15,19 @@ class OrderController extends Controller
     {
         $orders = Order::with('user')
             ->with('payment')
+            ->with('orderItems.product')
             ->orderBy("created_at", "desc")
             ->paginate(10);
-        return view("admin.order.index", compact("orders"));
+        return view("livewire.admin.orders.index", compact("orders"));
     }
-
+    
+    public function print(Order $order)
+    {
+        // Eager load agar data item & produk ikut terbawa
+        $order->load(['user', 'orderItems.product', 'payment']);
+        
+        return view('livewire.admin.orders.print', compact('order'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -32,23 +40,6 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        $order->load("user");
-        return view("admin.order.show", compact("order"));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
     {
         //
     }
