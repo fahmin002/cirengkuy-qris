@@ -14,24 +14,45 @@
             <x-app-logo />
         </a>
 
-        <flux:navlist variant="outline">
-            <flux:navlist.group :heading="__('Platform')" class="grid">
-                <div class="gap-1 grid">
-                    <flux:navlist.item icon="home" :href="route('admin.dashboard')"
-                        :current="request()->routeIs('admin.dashboard')" wire:navigate>{{ __('Dashboard') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item icon="shopping-cart" :href="route('admin.orders.index')"
-                        :current="request()->routeIs('admin.orders.index')" wire:navigate>{{ __('Orders') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item icon="gift" :href="route('admin.products.index')"
-                        :current="request()->routeIs('admin.products.index')" wire:navigate>{{ __('Products') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item icon="credit-card" :href="route('admin.payments.index')"
-                        :current="request()->routeIs('admin.payments.index')" wire:navigate>{{ __('Payments') }}
-                    </flux:navlist.item>
-                </div>
-            </flux:navlist.group>
-        </flux:navlist>
+<flux:navlist variant="outline">
+    <flux:navlist.group :heading="__('Operasional')" class="grid">
+        <div class="gap-2 grid">
+            {{-- Dashboard - Home Icon --}}
+            <flux:navlist.item icon="home" :href="route('admin.dashboard')"
+                :current="request()->routeIs('admin.dashboard')" wire:navigate>
+                {{ __('Dashboard') }}
+            </flux:navlist.item>
+
+            {{-- Order Center - Shopping Bag Icon --}}
+            <flux:navlist.item icon="shopping-bag" :href="route('admin.orders.index')"
+                :current="request()->routeIs('admin.orders.index')" wire:navigate>
+                {{ __('Order Center') }}
+            </flux:navlist.item>
+
+            {{-- Dapur / Rekap - Fire / Beaker Icon --}}
+            <flux:navlist.item icon="fire" href="#" 
+                :current="request()->routeIs('admin.kitchen.*')" wire:navigate>
+                {{ __('Dapur / Rekap') }}
+            </flux:navlist.item>
+        </div>
+    </flux:navlist.group>
+
+    <flux:navlist.group :heading="__('Katalog & Keuangan')" class="grid mt-4">
+        <div class="gap-2 grid">
+            {{-- Stok Produk - Cube / Archive Icon --}}
+            <flux:navlist.item icon="cube" :href="route('admin.products.index')"
+                :current="request()->routeIs('admin.products.index')" wire:navigate>
+                {{ __('Stok Produk') }}
+            </flux:navlist.item>
+
+            {{-- Riwayat Bayar - Banknotes Icon --}}
+            <flux:navlist.item icon="banknotes" :href="route('admin.payments.index')"
+                :current="request()->routeIs('admin.payments.index')" wire:navigate>
+                {{ __('Riwayat Bayar') }}
+            </flux:navlist.item>
+        </div>
+    </flux:navlist.group>
+</flux:navlist>
 
         <flux:spacer />
 
