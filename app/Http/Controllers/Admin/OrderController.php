@@ -8,18 +8,18 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $orders = Order::with('user')
-            ->with('payment')
-            ->with('orderItems.product')
-            ->orderBy("created_at", "desc")
-            ->paginate(10);
-        return view("livewire.admin.orders.index", compact("orders"));
-    }
+    // /**
+    //  * Display a listing of the resource.
+    //  */
+    // public function index()
+    // {
+    //     $orders = Order::with('user')
+    //         ->with('payment')
+    //         ->with('orderItems.product')
+    //         ->orderBy("created_at", "desc")
+    //         ->paginate(10);
+    //     return view("livewire.admin.orders.index", compact("orders"));
+    // }
     
     public function print(Order $order)
     {
