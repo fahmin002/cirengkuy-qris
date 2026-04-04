@@ -15,7 +15,6 @@ class PaymentSeeder extends Seeder
         Payment::create([
             'order_id' => $order->id,
             'payment_method' => 'qris',
-            'midtrans_order_id' => 'MID-' . $order->order_number,
             'amount' => $order->total_price,
             'status' => 'success',
             'qris_url' => 'https://midtrans.com/qris/example',

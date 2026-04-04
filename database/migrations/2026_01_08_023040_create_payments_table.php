@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('order_id')->index();
             $table->enum('payment_method', ['qris', 'cash']);
-            $table->string('midtrans_order_id')->unique()->nullable();
             $table->decimal('amount', 12, 2);
             $table->enum('status', ['pending', 'success', 'failed', 'expired', 'refunded'])->default('pending')->index();
             $table->text('qris_url')->nullable();

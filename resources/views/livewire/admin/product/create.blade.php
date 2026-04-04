@@ -6,13 +6,14 @@
                 <flux:breadcrumbs>
                     <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">Dashboard</flux:breadcrumbs.item>
                     <flux:breadcrumbs.item>Products</flux:breadcrumbs.item>
+                    <flux:breadcrumbs.item>Create Product</flux:breadcrumbs.item>
                 </flux:breadcrumbs>
             </div>
             <div>
                 <flux:button variant="primary" :href="route('admin.products.create')" color="blue">Tambahkan Produk</flux:button>
             </div>
         </div>
-        <div class="grid auto-rows-min gap-4 md:grid-cols-2">
+        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
             <div
                 class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
                
