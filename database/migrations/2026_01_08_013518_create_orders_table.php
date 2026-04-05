@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->decimal('total_price', 12, 2)->default(0);
             $table->enum('delivery_type', ['pickup', 'delivery'])->index();
             $table->enum('order_type', ['frozen', 'cooked'])->default('cooked');
-            $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending')->index();
+            $table->enum('order_status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending')->index();
             $table->enum('payment_status', ['paid', 'unpaid']);
             $table->string('recipient_name')->nullable();
             $table->string('recipient_phone')->nullable();

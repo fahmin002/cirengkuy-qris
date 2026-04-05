@@ -11,28 +11,34 @@ class OrderItemSeeder extends Seeder
 {
     public function run(): void
     {
-        $order = Order::first();
+        $orders = Order::all();
+        $products = Product::all();
 
-        $product1 = Product::where('name', 'Cireng Ayam Original')->first();
-        $product2 = Product::where('name', 'Cireng Ayam Pedas')->first();
+        foreach ($orders as $order) {
 
-        OrderItem::insert([
-            [
-                'order_id' => $order->id,
-                'product_id' => $product1->id,
-                'quantity' => 2,
-                'price' => $product1->price,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'order_id' => $order->id,
-                'product_id' => $product2->id,
-                'quantity' => 1,
-                'price' => $product2->price,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            $total = 0;
+
+            // tiap order punya 1–3 item
+            foreach ($products->random(rand(1, 3)) as $product) {
+
+                $qty = rand(1, 3);
+                $subtotal = $product->price * $qty;
+
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $product->id,
+                    'quantity' => $qty,
+                    'price' => $product->price,
+                    'subtotal' => $subtotal, // ⬅️ penting!
+                ]);
+
+                $total += $subtotal;
+            }
+
+            // update total di orders
+            $order->update([
+                'total_price' => $total
+            ]);
+        }
     }
 }

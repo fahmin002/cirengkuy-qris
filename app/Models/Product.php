@@ -14,8 +14,8 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'is_active',
         'image',
+        'is_active',
     ];
 
     protected $attributes = [

@@ -1,37 +1,71 @@
-<x-layouts.app :title="__('Products')">
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-        <div class="flex items-center justify-between">
+<x-layouts.app :title="__('Add Product')">
+
+    <div class="max-w-2xl mx-auto space-y-6">
+
+        {{-- HEADER --}}
+        <div>
+            <flux:heading size="xl">Add Product 🍥</flux:heading>
+            <flux:breadcrumbs>
+                <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">Dashboard</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item href="{{ route('admin.products.index') }}">Products</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>Add</flux:breadcrumbs.item>
+            </flux:breadcrumbs>
+        </div>
+
+        {{-- FORM --}}
+        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+            @csrf
+
+            {{-- NAME --}}
             <div>
-                <flux:heading size="xl">Products Page</flux:heading>
-                <flux:breadcrumbs>
-                    <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">Dashboard</flux:breadcrumbs.item>
-                    <flux:breadcrumbs.item>Products</flux:breadcrumbs.item>
-                    <flux:breadcrumbs.item>Create Product</flux:breadcrumbs.item>
-                </flux:breadcrumbs>
+                <flux:label>Name</flux:label>
+                <flux:input name="name" value="{{ old('name') }}" />
+                @error('name') <div class="text-red-500 text-sm">{{ $message }}</div> @enderror
             </div>
+
+            {{-- DESCRIPTION --}}
             <div>
-                <flux:button variant="primary" :href="route('admin.products.create')" color="blue">Tambahkan Produk</flux:button>
+                <flux:label>Description</flux:label>
+                <flux:textarea name="description">{{ old('description') }}</flux:textarea>
             </div>
-        </div>
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div
-                class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-               
+
+            {{-- PRICE --}}
+            <div>
+                <flux:label>Price</flux:label>
+                <flux:input type="number" name="price" value="{{ old('price') }}" />
             </div>
-            <div
-                class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern
-                    class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+
+            {{-- STOCK --}}
+            <div>
+                <flux:label>Stock</flux:label>
+                <flux:input type="number" name="stock" value="{{ old('stock') }}" />
             </div>
-            <div
-                class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern
-                    class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+
+            {{-- IMAGE --}}
+            <div>
+                <flux:label>Image</flux:label>
+                <input type="file" name="image" class="block w-full text-sm">
             </div>
-        </div>
-        <div
-            class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-        </div>
+
+            {{-- ACTIVE --}}
+            <div class="flex items-center gap-2">
+                <input type="checkbox" name="is_active" value="1" checked>
+                <span>Active</span>
+            </div>
+
+            {{-- ACTION --}}
+            <div class="flex justify-end gap-2">
+                <a href="{{ route('admin.products.index') }}">
+                    <flux:button variant="ghost">Cancel</flux:button>
+                </a>
+
+                <flux:button type="submit" variant="primary">
+                    Save Product
+                </flux:button>
+            </div>
+
+        </form>
+
     </div>
+
 </x-layouts.app>

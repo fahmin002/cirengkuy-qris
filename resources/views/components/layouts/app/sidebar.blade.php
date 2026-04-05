@@ -13,43 +13,50 @@
             wire:navigate>
             <x-app-logo />
         </a>
-
 <flux:navlist variant="outline">
+    {{-- 🔥 OPERASIONAL --}}
     <flux:navlist.group :heading="__('Operasional')" class="grid">
         <div class="gap-2 grid">
-            {{-- Dashboard - Home Icon --}}
+
             <flux:navlist.item icon="home" :href="route('admin.dashboard')"
                 :current="request()->routeIs('admin.dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
             </flux:navlist.item>
 
-            {{-- Order Center - Shopping Bag Icon --}}
             <flux:navlist.item icon="shopping-bag" :href="route('admin.orders.index')"
-                :current="request()->routeIs('admin.orders.index')" wire:navigate>
-                {{ __('Order Center') }}
+                :current="request()->routeIs('admin.orders.*')" wire:navigate>
+                {{ __('Orders') }}
             </flux:navlist.item>
 
-            {{-- Dapur / Rekap - Fire / Beaker Icon --}}
-            <flux:navlist.item icon="fire" href="#" 
+            <flux:navlist.item icon="fire" :href="route('admin.kitchen.index')"
                 :current="request()->routeIs('admin.kitchen.*')" wire:navigate>
-                {{ __('Dapur / Rekap') }}
+                {{ __('Kitchen') }}
             </flux:navlist.item>
+
         </div>
     </flux:navlist.group>
 
-    <flux:navlist.group :heading="__('Katalog & Keuangan')" class="grid mt-4">
+    {{-- 📦 PRODUK --}}
+    <flux:navlist.group :heading="__('Produk')" class="grid mt-4">
         <div class="gap-2 grid">
-            {{-- Stok Produk - Cube / Archive Icon --}}
+
             <flux:navlist.item icon="cube" :href="route('admin.products.index')"
-                :current="request()->routeIs('admin.products.index')" wire:navigate>
-                {{ __('Stok Produk') }}
+                :current="request()->routeIs('admin.products.*')" wire:navigate>
+                {{ __('Products') }}
             </flux:navlist.item>
 
-            {{-- Riwayat Bayar - Banknotes Icon --}}
+        </div>
+    </flux:navlist.group>
+
+    {{-- 💳 KEUANGAN --}}
+    <flux:navlist.group :heading="__('Keuangan')" class="grid mt-4">
+        <div class="gap-2 grid">
+
             <flux:navlist.item icon="banknotes" :href="route('admin.payments.index')"
-                :current="request()->routeIs('admin.payments.index')" wire:navigate>
-                {{ __('Riwayat Bayar') }}
+                :current="request()->routeIs('admin.payments.*')" wire:navigate>
+                {{ __('Payments') }}
             </flux:navlist.item>
+
         </div>
     </flux:navlist.group>
 </flux:navlist>

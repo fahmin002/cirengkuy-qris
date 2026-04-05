@@ -12,7 +12,7 @@ class Order extends Model
         'total_price',
         'delivery_type',
         'order_type',
-        'status',
+        'order_status',
         'payment_status',
         'recipient_name',
         'recipient_phone',
@@ -33,6 +33,11 @@ class Order extends Model
     }
 
     public function orderItems(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(OrderItem::class);
     }
