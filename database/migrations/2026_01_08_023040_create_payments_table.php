@@ -12,18 +12,23 @@ return new class extends Migration {
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id')->index();
-            $table->enum('payment_method', ['qris', 'cash']);
+            // Method
+            $table->enum('payment_method', ['qris', 'cash'])->index();
             $table->decimal('amount', 12, 2);
+            // Status
             $table->enum('status', ['pending', 'success', 'failed', 'expired', 'refunded'])->default('pending')->index();
+            // Midtrans Data
             $table->text('qris_url')->nullable();
             $table->dateTime('transaction_time')->nullable();
             $table->dateTime('settlement_time')->nullable();
+            // Refund
             $table->text('refund_proof')->nullable();
             $table->text('refund_reason')->nullable();
             $table->dateTime('refund_time')->nullable();
-
-            $table->foreign('order_id')->references('id')->on('orders');
+            // Relation
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            // Unique Constraint
+            $table->unique('order_id');
             $table->timestamps();
 
         });

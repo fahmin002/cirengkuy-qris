@@ -8,14 +8,14 @@
             </div>
             <div class="flex flex-col items-end gap-2">
                 @php
-                    $statusColor = match ($order->status) {
+                    $statusColor = match ($order->order_status) {
                         'paid' => 'blue',
                         'completed' => 'emerald',
                         'processing' => 'yellow',
                         'cancelled' => 'red',
                         default => 'zinc',
                     };
-                    $statusTitle = match ($order->status) {
+                    $statusTitle = match ($order->order_status) {
                         'paid' => 'Dibayar',
                         'completed' => 'Selesai',
                         'processing' => 'Diproses',
@@ -26,7 +26,7 @@
                 <flux:badge color="{{ $statusColor }}" size="lg" class="px-4 py-1 font-bold">
                     {{ $statusTitle }}</flux:badge>
 
-                @if ($order->payment->refund_time && $order->status == 'cancelled')
+                @if ($order->payment->refund_time && $order->order_status == 'cancelled')
                     <flux:badge color="red" size="sm" variant="solid">Uang Kembali</flux:badge>
                 @endif
             </div>

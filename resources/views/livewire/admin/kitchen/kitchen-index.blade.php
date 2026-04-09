@@ -3,7 +3,7 @@
         {{-- HEADER --}}
         <div class="flex items-center justify-between">
             <div>
-                <flux:heading size="xl">Kitchen 🍳</flux:heading>
+                <flux:heading size="xl">Kitchen</flux:heading>
                 <flux:breadcrumbs>
                     <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">Dashboard</flux:breadcrumbs.item>
                     <flux:breadcrumbs.item>Kitchen</flux:breadcrumbs.item>
