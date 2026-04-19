@@ -45,7 +45,7 @@
         @foreach ([
             '' => [
                 'status' => '',
-                'label' => 'Semua',
+                'label' => 'All',
                 'color' => ''
             ],
             'pending' => [
@@ -55,17 +55,17 @@
             ],
             'processing' => [
                 'status' => 'processing',
-                'label' => 'Diproses',
+                'label' => 'Processing',
                 'color' => 'yellow'
             ],
             'completed' => [
                 'status' => 'completed',
-                'label' => 'Selesai',
+                'label' => 'Completed',
                 'color' => 'green'
             ],
             'cancelled' => [
                 'status' => 'cancelled',
-                'label' => 'Batal',
+                'label' => 'Cancelled',
                 'color' => 'red'
             ],
         ] as $key)
@@ -126,17 +126,28 @@
                         </td>
 
                         {{-- PAYMENT --}}
+                        @php
+                            $paymentStatus = $order->payment_status;
+
+                            $statusMap = [
+                                'pending' => ['color' => 'bg-yellow-500', 'label' => 'Pending'],
+                                'unpaid' => ['color' => 'bg-red-500', 'label' => 'Unpaid'],
+                                'paid' => ['color' => 'bg-blue-500', 'label' => 'Paid'],
+                            ];
+
+                            $status = $statusMap[$paymentStatus] ?? [
+                                'color' => 'bg-zinc-400',
+                                'label' => strtoupper($paymentStatus)
+                            ];
+                        @endphp
+
                         <td class="px-6 py-5">
                             <div class="flex items-center gap-2">
 
-                                <div class="w-2 h-2 rounded-full
-                                    {{ $order->payment?->status === 'success' ? 'bg-emerald-500' : '' }}
-                                    {{ $order->payment?->status === 'pending' ? 'bg-yellow-500' : '' }}
-                                    {{ !$order->payment ? 'bg-red-500' : '' }}
-                                "></div>
+                                <div class="w-2 h-2 rounded-full {{ $status['color'] }}"></div>
 
                                 <span class="text-xs font-bold uppercase">
-                                    {{ $order->payment?->status ?? 'unpaid' }}
+                                    {{ $status['label'] }}
                                 </span>
 
                             </div>
@@ -217,7 +228,7 @@
                                     <div class="text-right">
                                         <div class="text-xs text-zinc-500">Payment</div>
                                         <div class="font-bold">
-                                            {{ strtoupper($order->payment?->status ?? 'UNPAID') }}
+                                            {{ strtoupper($order->payment_status) }}
                                         </div>
                                     </div>
 

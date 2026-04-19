@@ -6,13 +6,14 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Livewire\Admin\Kitchen\KitchenIndex;
 use App\Livewire\Admin\Orders\OrderIndex; // Pastikan import ini ada
+use App\Livewire\Admin\Payments\PaymentIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/dashboard", [AdminDashboardController::class, "dashboard"])->name("dashboard");
 
 // 1. Route Livewire untuk Halaman Utama Orders (Order Center)
 Route::get('orders', OrderIndex::class)->name('orders.index');
-
+Route::get('payments', PaymentIndex::class)->name('payments.index');
 
 // 2. Tetap gunakan resource untuk fungsi lain (store, update, destroy)
 // Kecuali 'index' dan 'show' karena sudah kita handle di Livewire
@@ -23,4 +24,4 @@ Route::get('orders/{order}/print', [OrderController::class, 'print'])->name('ord
 
 Route::get('kitchen', KitchenIndex::class)->name('kitchen.index');
 Route::resource('products', ProductController::class);
-Route::resource('payments', PaymentController::class);
+// Route::resource('payments', PaymentController::class);

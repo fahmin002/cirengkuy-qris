@@ -20,7 +20,7 @@ class ProductController extends Controller
             $q->where('name', 'like', "%$query%");
         })->latest()->get();
 
-        return view('livewire.admin.product.index', compact('products'));
+        return view('livewire.admin.products.product-index', compact('products'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('livewire.admin.product.create');
+        return view('livewire.admin.products.create');
     }
 
     /**

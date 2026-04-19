@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->enum('payment_method', ['qris', 'cash'])->index();
             $table->decimal('amount', 12, 2);
             // Status
-            $table->enum('status', ['pending', 'success', 'failed', 'expired', 'refunded'])->default('pending')->index();
+            $table->enum('status', ['pending', 'unpaid', 'paid', 'failed', 'expired', 'success'])->default('pending')->index();
             // Midtrans Data
             $table->text('qris_url')->nullable();
             $table->dateTime('transaction_time')->nullable();

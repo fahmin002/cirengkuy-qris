@@ -19,6 +19,12 @@ class Payment extends Model
         'refund_time',
     ];
 
+    protected $casts = [
+        'amount'=> 'decimal:2',
+        'transaction_time' => 'datetime',
+        'settlement_time' => 'datetime'
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class);

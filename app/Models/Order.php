@@ -47,4 +47,12 @@ class Order extends Model
         return $this->hasOne(Payment::class);
     }
 
+    public function syncPaymentStatus()
+    {
+        $this->payment_status = $this->payment?->status === 'success'
+            ? 'paid'
+            : 'unpaid';
+
+        $this->save();
+    }
 }
