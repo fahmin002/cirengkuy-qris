@@ -8,6 +8,8 @@ use App\Models\Order;
 class KitchenIndex extends Component
 {
     public $filterType = 'all'; // all | cooked | frozen
+    
+    protected $listeners = ['echo:orders,OrderUpdated' => '$refresh'];
 
     public function updateStatus($orderId, $status)
     {

@@ -12,6 +12,8 @@ class OrderIndex extends Component
     use WithPagination;
 
     protected $paginationTheme = "tailwind";
+    
+    protected $listeners = ['echo:orders, orderUpdated' => '$handleOrderUpdate'];
 
     #[Url(history: true)]
     public $order_status = ''; // Nyimpen status filter (?status=paid)
@@ -82,6 +84,13 @@ class OrderIndex extends Component
     {
         Order::where('id', $orderId)->update([
             'order_status' => $status
+        ]);
+    }
+
+    public function handleOrderUpdate($event)
+    {
+        $this->dispatch('notify', [
+            'message' => 'Order #' . $event['order']['order_number'] . ' updated!'
         ]);
     }
 
